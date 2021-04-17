@@ -1,4 +1,4 @@
-package model;
+package com.willitend.backend.willitendBackend.model;
 
 import javax.persistence.*;
 
@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class User {
 	
 	@Id
+	@Column(name = "email")
 	private String email;
 	
 	@Column(name = "state")
@@ -41,7 +42,7 @@ public class User {
 		return password; 
 	}
 	
-	public String username() {
+	public String getUsername() {
 		return username; 
 	}
 	

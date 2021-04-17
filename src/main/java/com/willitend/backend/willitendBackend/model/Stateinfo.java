@@ -1,4 +1,4 @@
-package model;
+package com.willitend.backend.willitendBackend.model;
 
 import javax.persistence.*;
 
@@ -7,6 +7,7 @@ import javax.persistence.*;
 public class Stateinfo {
 	
 	@Id
+	@Column(name = "name")
 	private String name; 
 	
 	@Column(name = "hDays")
