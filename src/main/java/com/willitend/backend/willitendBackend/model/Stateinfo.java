@@ -7,25 +7,25 @@ import javax.persistence.*;
 public class Stateinfo {
 	
 	@Id
-	@Column(name = "name")
+	@Column(name = "name", columnDefinition = "CHAR(2)")
 	private String name; 
 	
-	@Column(name = "hDays")
+	@Column(name = "hDays", columnDefinition ="INTEGER")
 	private int hDays; 
 	
-	@Column(name = "1Shot")
+	@Column(name = "1Shot", columnDefinition ="INTEGER")
 	private int firstShot; 
 	
-	@Column(name = "2Shot")
+	@Column(name = "2Shot", columnDefinition ="INTEGER")
 	private int secShot; 
 	
-	@Column(name = "vacPerDay")
+	@Column(name = "vacPerDay", columnDefinition ="INTEGER")
 	private int vacPerDay; 
 	
-	@Column(name = "hPop")
+	@Column(name = "hPop", columnDefinition ="INTEGER")
 	private int hPop; 
 	
-	@Column(name = "pop")
+	@Column(name = "pop", columnDefinition ="INTEGER")
 	private int pop; 
 	
 	public Stateinfo() {
@@ -46,7 +46,7 @@ public class Stateinfo {
 		return name; 
 	}
 	
-	public int getHDays() { 
+	public int getHDays() {
 		return hDays; 
 	}
 	

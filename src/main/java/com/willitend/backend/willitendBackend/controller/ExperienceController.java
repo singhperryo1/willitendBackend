@@ -24,7 +24,7 @@ import com.willitend.backend.willitendBackend.repository.ExperienceRepository;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/experience")
+@RequestMapping("/exp")
 public class ExperienceController {
 	
 	@Autowired

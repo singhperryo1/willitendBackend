@@ -10,10 +10,10 @@ public class User {
 	@Column(name = "email")
 	private String email;
 	
-	@Column(name = "state")
+	@Column(name = "state", columnDefinition = "CHAR(2)")
 	private String state; 
 	
-	@Column(name = "password")
+	@Column(name = "password", columnDefinition = "CHAR(64)")
 	private String password; 
 	
 	@Column(name = "username")
@@ -38,7 +38,7 @@ public class User {
 		return state; 
 	}
 	
-	public String password() {
+	public String getPassword() {
 		return password; 
 	}
 	

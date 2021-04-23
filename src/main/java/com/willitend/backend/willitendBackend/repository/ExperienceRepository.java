@@ -1,9 +1,12 @@
 package com.willitend.backend.willitendBackend.repository;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.CrudRepository;
 import com.willitend.backend.willitendBackend.model.Experience;
+import com.willitend.backend.willitendBackend.model.ExperienceId;
 
-public interface ExperienceRepository extends JpaRepository<Experience, Long> {
+public interface ExperienceRepository extends CrudRepository <Experience, ExperienceId> {
 
+	Page<Experience> findAll(Pageable paging);
 }

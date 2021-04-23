@@ -22,7 +22,7 @@ public class UserController {
 	@Autowired
 	UserRepository userRepository; 
 	
-	@GetMapping("/login/{username}")
+	@GetMapping("/{username}")
 	public ResponseEntity<User> getUserInfo(@PathVariable("username") String username) {
 		try {
 			User user = userRepository.findByUsername(username); 
@@ -38,10 +38,10 @@ public class UserController {
 		}
 	}
 	
-	@PostMapping("/createUser")
+	@PostMapping("/create")
 	public ResponseEntity<User> createUser(@RequestBody User user) {
 		try {
-			User _user = userRepository.save(new User(user.getEmail(), user.getState(), user.password(), user.getUsername()));
+			User _user = userRepository.save(new User(user.getEmail(), user.getState(), user.getPassword(), user.getUsername()));
 			return new ResponseEntity<>(_user,  HttpStatus.CREATED); 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); 

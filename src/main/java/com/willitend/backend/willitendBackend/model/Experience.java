@@ -1,33 +1,38 @@
 package com.willitend.backend.willitendBackend.model;
 
-import java.util.Date;
+import java.sql.Date;  
 import javax.persistence.*;
 
-@Entity
+import org.springframework.format.annotation.DateTimeFormat;
+
+
 @Table(name = "experience")
+@Entity
+@IdClass(ExperienceId.class)
 public class Experience {
-	
+
 	@Id
 	@Column(name = "email")
 	private String email; 
 	
 	@Id
 	@Column(name = "date")
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date date; 
 	
 	@Column(name = "username")
 	private String username;  
 	
-	@Column(name = "site")
+	@Column(name = "site", columnDefinition = "TEXT")
 	private String site; 
 	
-	@Column(name = "title")
+	@Column(name = "title", columnDefinition = "TINYTEXT")
 	private String title; 
 	
-	@Column(name = "vaccExp")
+	@Column(name = "vaccExp", columnDefinition = "MEDIUMTEXT")
 	private String vaccExp; 
 	
-	@Column(name = "state")
+	@Column(name = "state", columnDefinition = "CHAR(2)")
 	private String state; 
 	
 	public Experience() {
@@ -80,8 +85,9 @@ public class Experience {
 		this.state = state; 
 	}
 	
-	public void setDate(Date date) {
-		this.date = date; 
+	public void setDate(String date){
+		Date d = Date.valueOf(date);
+		this.date = d;
 	}
 	
 	public void setUsername(String username) {

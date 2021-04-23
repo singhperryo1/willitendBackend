@@ -20,13 +20,13 @@ import com.willitend.backend.willitendBackend.repository.StateinfoRepository;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/home")
+@RequestMapping("/stateinfo")
 public class StateinfoController {
 	
 	@Autowired
 	StateinfoRepository stateinfoRepository; 
 	
-	@GetMapping("/createState")
+	@GetMapping("/getAll")
 	public ResponseEntity<List<Stateinfo>> getAllStateInfo() {
 		try {
 			List<Stateinfo> statesInfo = new ArrayList<>(); 
@@ -43,17 +43,17 @@ public class StateinfoController {
 		}
 	}
 	
-	@PostMapping("/state")
+	@PostMapping("/create")
 	public ResponseEntity<Stateinfo> createStateInfo(@RequestBody Stateinfo stateinfo) {
 		try {
-			Stateinfo _stateinfo = stateinfoRepository.save(new Stateinfo(stateinfo.getName(), stateinfo.getHDays(), stateinfo.getFirstShot(), stateinfo.getSecShot(), stateinfo.getVacPerDay(), stateinfo.getHDays(), stateinfo.getHPop()));
+			Stateinfo _stateinfo = stateinfoRepository.save(new Stateinfo(stateinfo.getName(), stateinfo.getHDays(), stateinfo.getFirstShot(), stateinfo.getSecShot(), stateinfo.getVacPerDay(), stateinfo.getHPop(), stateinfo.getPop()));
 			return new ResponseEntity<>(_stateinfo, HttpStatus.CREATED); 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
 	
-	@PutMapping("/updateState/{name}")
+	@PutMapping("/update/{name}")
 	public ResponseEntity<Stateinfo> updateStateInfo(@PathVariable("name") String name, @RequestBody Stateinfo stateinfo) {
 		Stateinfo stateData = stateinfoRepository.findByName(name);
 		

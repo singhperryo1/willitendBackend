@@ -20,7 +20,7 @@ public class NewsletterController {
 	@Autowired 
 	NewsletterRepository newsletterRepository; 
 	
-	@PostMapping ("/app")
+	@PostMapping ("/create")
 	public ResponseEntity<Newsletter> createNewsletter (@RequestBody Newsletter newsletter) {
 		try {
 			Newsletter _newsletter = newsletterRepository.save(new Newsletter(newsletter.getEmail(), newsletter.getState()));

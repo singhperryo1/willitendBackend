@@ -5,12 +5,12 @@ import javax.persistence.*;
 @Entity
 @Table(name = "newsletter")
 public class Newsletter {
-	
+
 	@Id 
 	@Column(name = "email")
 	private String email; 
 	
-	@Column(name = "state")
+	@Column(name = "state", columnDefinition = "CHAR(2)")
 	private String state; 
 	
 	public Newsletter() {
