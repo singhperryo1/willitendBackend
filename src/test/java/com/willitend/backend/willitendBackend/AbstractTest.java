@@ -1,6 +1,8 @@
 package com.willitend.backend.willitendBackend;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +31,8 @@ public abstract class AbstractTest {
    }
    protected String mapToJson(Object obj) throws JsonProcessingException {
       ObjectMapper objectMapper = new ObjectMapper();
+      DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+      objectMapper.setDateFormat(df);
       return objectMapper.writeValueAsString(obj);
    }
    protected <T> T mapFromJson(String json, Class<T> clazz)

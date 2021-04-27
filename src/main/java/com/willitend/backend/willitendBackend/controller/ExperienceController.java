@@ -33,7 +33,7 @@ public class ExperienceController {
 	@GetMapping("/getAll")
 	public ResponseEntity<Map<String, Object>>  getAllExperience(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "6") int size) {
 		try {
-			List<Experience> experiencePosts = new ArrayList<>();
+			List<Experience> experiencePosts = new ArrayList<Experience>();
 			Pageable paging = PageRequest.of(page, size);
 			
 			Page<Experience> pageExps = experienceRepository.findAll(paging);
@@ -42,7 +42,7 @@ public class ExperienceController {
 			
 			Map<String, Object> response = new HashMap<>();
 			
-			response.put("exps", experiencePosts);
+			response.put("exps", pageExps.getContent());
 		    response.put("currentPage", pageExps.getNumber());
 		    response.put("totalItems", pageExps.getTotalElements());
 		    response.put("totalPages", pageExps.getTotalPages());
