@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.willitend.backend.willitendBackend.model.Experience;
 import com.willitend.backend.willitendBackend.repository.ExperienceRepository;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/exp")
 public class ExperienceController {
@@ -54,7 +54,7 @@ public class ExperienceController {
 		}
 	}
 	
-	@PostMapping("/createExp")
+	@PostMapping("/create")
 	public ResponseEntity<Experience> createExperience(@RequestBody Experience experience) {
 		try {
 			Experience _exp = experienceRepository.save(new Experience(experience.getEmail(), experience.getDate(), experience.getUsername(), experience.getSite(), experience.getState(), experience.getTitle(), experience.getVaccExp())); 

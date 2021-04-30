@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.willitend.backend.willitendBackend.model.Newsletter;
 import com.willitend.backend.willitendBackend.repository.NewsletterRepository;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/newsletter")
 public class NewsletterController {
@@ -24,7 +24,7 @@ public class NewsletterController {
 	public ResponseEntity<Newsletter> createNewsletter (@RequestBody Newsletter newsletter) {
 		try {
 			Newsletter _newsletter = newsletterRepository.save(new Newsletter(newsletter.getEmail(), newsletter.getState()));
-			return new ResponseEntity<>(_newsletter, HttpStatus.CREATED); 
+			return new ResponseEntity<>(null, HttpStatus.CREATED); 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
