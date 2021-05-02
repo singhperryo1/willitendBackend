@@ -1,5 +1,6 @@
 package com.willitend.backend.willitendBackend.controller;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -11,23 +12,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.willitend.backend.willitendBackend.model.User;
-import com.willitend.backend.willitendBackend.repository.UserRepository;
+import com.willitend.backend.willitendBackend.model.Newsletter;
+import com.willitend.backend.willitendBackend.repository.NewsletterRepository;
 
 @CrossOrigin(origins = "http://localhost:8080")
 @RestController
-@RequestMapping("/NewsLetter")
-public class NewsLetterController {
+@RequestMapping("/newsletter")
+public class NewsletterController {
 	
 	@Autowired
-	UserRepository nlRepository; 
+	NewsletterRepository nlRepository; 
 	
-	@GetMapping("/getNesLetter")
-	public ResponseEntity<NewsLetter> getNewsLetter(@PathVariable("email") String email) {
+	@GetMapping("/{email}")
+	public ResponseEntity<Newsletter> getNewsLetter(@PathVariable("email") String email) {
 		try {
-			NewLetter nl = userRepository.findByUsername(email); 
+			Newsletter nl = nlRepository.findByEmail(email); 
 			
-			if (user == null) {
+			if (nl == null) {
 				return new ResponseEntity<>(null, HttpStatus.NO_CONTENT); 
 			}
 
@@ -37,29 +38,14 @@ public class NewsLetterController {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 	}
-	@GetMapping("/getAllNewsLetter")
-	public ResponseEntity<List<NewsLetter>> getAllNewsLetter() {
+	@PostMapping("/create")
+	public ResponseEntity<Newsletter> createNewsLetter(@RequestBody Newsletter nl) {
 		try {
-			List<NewsLetter> NewsLetter = new ArrayList<>(); 
-			
-			stateinfoRepository.findAll().forEach(NewsLetter::add);
-			
-			if (NewsLetter.isEmpty()) {
-				return new ResponseEntity<>(HttpStatus.NO_CONTENT); 
-			}
-			
-			return new ResponseEntity<>(NewsLetter, HttpStatus.OK); 
-		} catch (Exception e) {
-			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-	}
-	@PostMapping("/creatNewsLetter")
-	public ResponseEntity<NewsLetter> creatNewsLetter(@RequestBody NewsLetter nl) {
-		try {
-			NewsLetter nl = nlRepository.save(new NewsLetter(nl.getUserEmail(),nl.getUserState()));
-			return new ResponseEntity<>(nl,  HttpStatus.CREATED); 
+			Newsletter _nl = nlRepository.save(new Newsletter(nl.getEmail(),nl.getState()));
+			return new ResponseEntity<>(_nl,  HttpStatus.CREATED); 
 		} catch (Exception e) {
 			return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR); 
 		}
 	}
+	
 }

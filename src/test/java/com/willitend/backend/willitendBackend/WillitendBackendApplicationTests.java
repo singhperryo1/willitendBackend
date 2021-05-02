@@ -21,6 +21,7 @@ import com.willitend.backend.willitendBackend.model.User;
 import junit.framework.Assert;
 
 import com.willitend.backend.willitendBackend.model.Experience;
+import com.willitend.backend.willitendBackend.model.Newsletter;
 
 public class WillitendBackendApplicationTests extends AbstractTest {
 	
@@ -136,5 +137,33 @@ public class WillitendBackendApplicationTests extends AbstractTest {
 		assertEquals(experienceCreated.getState(), experience.getState());
 		assertEquals(experienceCreated.getTitle(), experience.getTitle());
 		assertEquals(experienceCreated.getVaccExp(), experience.getVaccExp());
+	}
+	@Test
+	public void getNewsletter() throws Exception {
+		String uri = "/newsletter/g@sikh.com";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri)
+				.accept(MediaType.APPLICATION_JSON_VALUE)).andReturn();
+				
+	   int status = mvcResult.getResponse().getStatus(); 		
+	   assertEquals(200, status);
+	   String content = mvcResult.getResponse().getContentAsString();
+	   Newsletter nl = super.mapFromJson(content, Newsletter.class); 
+	   assertEquals(nl.getEmail(), "g@sikh.com"); 
+	   assertEquals(nl.getState(), "CA");
+	}
+	
+	@Test
+	public void createNewsLetter() throws Exception {
+		String uri = "/newsletter/create"; 
+		Newsletter nl = new Newsletter("li_hing@student.smc.edu","CA");
+		String inputJson = super.mapToJson(nl);
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.post(uri)
+		      .contentType(MediaType.APPLICATION_JSON_VALUE).content(inputJson)).andReturn();
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(201, status);
+		String content = mvcResult.getResponse().getContentAsString();
+		Newsletter getFromMVC = super.mapFromJson(content, Newsletter.class); 
+		assertEquals(getFromMVC.getState(), nl.getState()); 
+		assertEquals(getFromMVC.getEmail(), nl.getEmail()); 
 	}
 }
