@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.willitend.backend.willitendBackend.model.Stateinfo;
 import com.willitend.backend.willitendBackend.repository.StateinfoRepository;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/stateinfo")
 public class StateinfoController {

@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.willitend.backend.willitendBackend.model.User;
 import com.willitend.backend.willitendBackend.repository.UserRepository;
 
-@CrossOrigin(origins = "http://localhost:8080")
+@CrossOrigin("http://localhost:3000")
 @RestController
 @RequestMapping("/user")
 public class UserController {

@@ -36,6 +36,24 @@ public class Experience {
 	private String state; 
 	
 	public Experience() {
+		this.email = "test";
+		this.username = "test";
+		this.date = new Date(System.currentTimeMillis());
+		this.site = "site";
+		this.title = "title";
+		this.vaccExp = "vaccExp";
+		this.state = "CA";
+		
+	}
+	
+	public Experience(String site, String title, String vaccExp) {
+		this.email = "test";
+		this.username = "test";
+		this.date = new Date(System.currentTimeMillis());
+		this.site = site;
+		this.title = title;
+		this.vaccExp = vaccExp;
+		this.state = "CA";
 		
 	}
 	
@@ -43,6 +61,16 @@ public class Experience {
 		this.email = email; 
 		this.username = username; 
 		this.date = date; 
+		this.site = site; 
+		this.title = title; 
+		this.vaccExp = vaccExp; 
+		this.state = state; 
+	}
+	
+	public Experience(String email, String username, String site, String state, String title, String vaccExp) {
+		this.email = email; 
+		this.username = username; 
+		this.date = new Date(System.currentTimeMillis()); 
 		this.site = site; 
 		this.title = title; 
 		this.vaccExp = vaccExp; 
